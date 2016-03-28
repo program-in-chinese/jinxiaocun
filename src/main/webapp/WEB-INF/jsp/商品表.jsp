@@ -21,7 +21,7 @@
 		<input type="text" name="名称" size="50"></input><br/>
 		<label for="单位">单位:</label>
 		<input type="text" name="单位" size="50"></input><br/>
-		<input type="submit"></input>
+		<input type="submit" value="提交"></input>
 	</form>
 </body>
 

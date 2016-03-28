@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<description>Spring Boot演示进销存</description>
+	<description>Spring Boot演示进销存</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
