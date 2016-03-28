@@ -13,22 +13,23 @@ public class 商品 {
 	private Long id;
 	private String 名称;
 	private String 单位;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
+	public String get名称() {
 		return 名称;
 	}
-	public void setName(String name) {
-		this.名称 = name;
+	public void set名称(String 名称) {
+		this.名称 = 名称;
 	}
-	public String getUnit() {
+	public String get单位() {
 		return 单位;
 	}
-	public void setUnit(String 单位) {
+	public void set单位(String 单位) {
 		this.单位 = 单位;
 	}
 }

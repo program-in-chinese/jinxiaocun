@@ -19,18 +19,18 @@ public class 商品控制 {
 		this.商品库 = 商品库;
 	}
 	
-	@RequestMapping(value="/productList", method=RequestMethod.GET)
-	public String 商品表(Model model) {
+	@RequestMapping(value="/products", method=RequestMethod.GET)
+	public String 欢迎商品表(Model model) {
 		List<商品> 商品表 = 商品库.findAll();
 		if (商品表 != null) {
-			model.addAttribute("products", 商品表);
+			model.addAttribute("商品表", 商品表);
 		}
-		return "productList";
+		return "商品表";
 	}
-	
-	@RequestMapping(value="/productList", method=RequestMethod.POST)
-	public String 添加商品(商品 商品) {
+
+	@RequestMapping(value="/products", method=RequestMethod.POST)
+	public String 欢迎添加商品(商品 商品) {
 		商品库.save(商品);
-		return "redirect:/productList";
+		return "redirect:/products";
 	}
 }
