@@ -26,29 +26,28 @@ import org.springframework.web.context.WebApplicationContext;
 @WebAppConfiguration
 public class 商品控制Tests {
 
-	@Autowired
-	private WebApplicationContext 上下文;
-	private MockMvc 模拟Mvc;
+  @Autowired
+  private WebApplicationContext 上下文;
+  private MockMvc 模拟Mvc;
 
-	@Before
-	public void 设置模拟() {
-		模拟Mvc = MockMvcBuilders.webAppContextSetup(上下文).build();
-	}
+  @Before
+  public void 设置模拟() {
+    模拟Mvc = MockMvcBuilders.webAppContextSetup(上下文).build();
+  }
 
-	@Test
-	public void 根路径转移() throws Exception {
-		模拟Mvc.perform(get("/")).andExpect(status().is3xxRedirection())
-				.andExpect(header().string("Location", "/" + URLEncoder.encode(商品控制.URL, "UTF-8")));
-	}
+  @Test
+  public void 根路径转移() throws Exception {
+    模拟Mvc.perform(get("/")).andExpect(status().is3xxRedirection())
+        .andExpect(header().string("Location", "/" + URLEncoder.encode(商品控制.URL, "UTF-8")));
+  }
 
-	@Test
-	public void 商品表() throws Exception {
-		模拟Mvc.perform(MockMvcRequestBuilders.get(new URI("/" + 商品控制.URL)))
-			.andDo(MockMvcResultHandlers.print())
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.view().name(商品控制.表名))
-			.andExpect(MockMvcResultMatchers.model().attributeExists(商品控制.表名));
-			// TODO: 测试需用H2而不是mysql
-			//.andExpect(MockMvcResultMatchers.model().attribute(商品控制.表名, Matchers.is(Matchers.empty())));
-	}
+  @Test
+  public void 商品表() throws Exception {
+    模拟Mvc.perform(MockMvcRequestBuilders.get(new URI("/" + 商品控制.URL)))
+        .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(MockMvcResultMatchers.view().name(商品控制.表名))
+        .andExpect(MockMvcResultMatchers.model().attributeExists(商品控制.表名));
+    // TODO: 测试需用H2而不是mysql
+    // .andExpect(MockMvcResultMatchers.model().attribute(商品控制.表名, Matchers.is(Matchers.empty())));
+  }
 }
