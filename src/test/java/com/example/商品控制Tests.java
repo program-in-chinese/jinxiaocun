@@ -7,11 +7,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.net.URI;
 import java.net.URLEncoder;
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = 进销存演示Application.class)
 @WebAppConfiguration
@@ -46,8 +49,7 @@ public class 商品控制Tests {
     模拟Mvc.perform(MockMvcRequestBuilders.get(new URI("/" + 商品控制.URL)))
         .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.view().name(商品控制.表名))
-        .andExpect(MockMvcResultMatchers.model().attributeExists(商品控制.表名));
-    // TODO: 测试需用H2而不是mysql
-    // .andExpect(MockMvcResultMatchers.model().attribute(商品控制.表名, Matchers.is(Matchers.empty())));
+        .andExpect(MockMvcResultMatchers.model().attributeExists(商品控制.表名))
+        .andExpect(MockMvcResultMatchers.model().attribute(商品控制.表名, Matchers.is(Matchers.empty())));
   }
 }
