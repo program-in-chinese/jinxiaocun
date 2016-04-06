@@ -38,7 +38,9 @@
 		<form:errors path="名称" cssClass="error"/>
 		<br/>
 		<label for="单位">单位:</label>
-		<form:input type="text" path="单位" size="50" /><br/>
+		<form:input type="text" path="单位" size="10" />
+		<form:errors path="单位" cssClass="error"/>
+		<br/>
 		<input type="submit" value="提交"></input>
 	</form:form>
 </body>
