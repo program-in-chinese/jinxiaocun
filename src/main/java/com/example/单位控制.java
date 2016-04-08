@@ -12,32 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/商品表")
-public class 商品控制 {
+@RequestMapping(value = "/单位表")
+public class 单位控制 {
 
-  protected static final String URL = "商品表";
-  protected static final String 表名 = "商品表";
+  protected static final String URL = "单位表";
+  protected static final String 表名 = "单位表";
 
   @Autowired
-  private 商品库 商品库;
+  private 单位库 单位库;
 
   @RequestMapping(method = RequestMethod.GET)
   public String 列表(Model 模型) {
-    List<商品> 表 = 商品库.findAll();
+    List<单位> 表 = 单位库.findAll();
     if (表 != null) {
       模型.addAttribute(表名, 表);
     }
     // 需要初始化被校验的对象
-    模型.addAttribute("商品", new 商品());
+    模型.addAttribute("单位", new 单位());
     return 表名;
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public String 添加(@Valid 商品 商品, BindingResult 约束结果) {
+  public String 添加(@Valid 单位 单位, BindingResult 约束结果) {
     if (约束结果.hasErrors()) {
       return URL;
     }
-    商品库.save(商品);
+    单位库.save(单位);
     return "redirect:/" + URL;
   }
 }

@@ -27,7 +27,7 @@
 	<c:forEach var="商品" items="${商品表}">
 		<div>
 			<c:out value="${商品.名称}"/> 单位:
-			<c:out value="${商品.单位}"/>
+			<c:out value="${商品.单位.名称}"/>
 		</div>
 	</c:forEach>
 	
@@ -38,11 +38,8 @@
 		<form:input type="text" path="名称" size="50" />
 		<form:errors path="名称" cssClass="error"/>
 		<br/>
-		<label for="单位">单位:</label>
-		<form:input type="text" path="单位" size="10" />
-		<form:errors path="单位" cssClass="error"/>
-		<br/>
-		<input type="submit" value="提交"></input>
+		<form:select path="单位" multiple="true" items="${all单位s}" itemLabel="名称" itemValue="id" />
+		<input type="submit" value="提交" disabled="disabled"></input>
 	</form:form>
 </body>
 

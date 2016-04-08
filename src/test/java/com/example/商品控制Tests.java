@@ -1,6 +1,10 @@
 package com.example;
 
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -36,7 +40,9 @@ import org.springframework.web.context.WebApplicationContext;
 public class 商品控制Tests {
 
   private static final String 商品名 = "测试名";
-  private static final String 商品单位 = "测试单位";
+  private static final long 商品ID = 1L;
+  private static final String 单位名 = "单位名";
+  private static final long 单位ID = 1L;
 
   @Autowired
   private WebApplicationContext 上下文;
@@ -66,23 +72,41 @@ public class 商品控制Tests {
 
   @Test
   public void 添加() throws Exception {
-    模拟Mvc.perform(post(new URI("/" + 商品控制.URL))
-           .param("名称", 商品名)
-           .param("单位", 商品单位))
-           .andExpect(status().is3xxRedirection())
-           .andExpect(header().string("Location", "/" + 商品控制.URL));
+    单位 期望单位 = new 单位();
+    期望单位.setId(单位ID);
+    期望单位.set名称(单位名);
 
     商品 期望商品 = new 商品();
-    期望商品.setId(1L);
+    期望商品.setId(商品ID);
     期望商品.set名称(商品名);
-    期望商品.set单位(商品单位);
+    期望商品.set单位(期望单位);
+
+    模拟Mvc.perform(post(new URI("/" + 单位控制.URL)).param("名称", 单位名))
+        .andExpect(status().is3xxRedirection())
+        .andExpect(header().string("Location", "/" + 单位控制.URL));
+
+    模拟Mvc.perform(get(new URI("/" + 单位控制.URL)))
+           .andExpect(status().isOk())
+           .andExpect(view().name(单位控制.表名))
+           .andExpect(model().attributeExists(单位控制.表名))
+           .andExpect(model().attribute(单位控制.表名, hasSize(1)))
+           .andExpect(model().attribute(单位控制.表名,
+                        contains(samePropertyValuesAs(期望单位))));
+
+    模拟Mvc.perform(post(new URI("/" + 商品控制.URL)).param("名称", 商品名).param("单位", Long.toString(单位ID)))
+        .andExpect(status().is3xxRedirection())
+        .andExpect(header().string("Location", "/" + 商品控制.URL));
 
     模拟Mvc.perform(get(new URI("/" + 商品控制.URL)))
            .andExpect(status().isOk())
            .andExpect(view().name(商品控制.表名))
            .andExpect(model().attributeExists(商品控制.表名))
            .andExpect(model().attribute(商品控制.表名, hasSize(1)))
-           .andExpect(model().attribute(商品控制.表名,
-                        contains(samePropertyValuesAs(期望商品))));
+           .andExpect(model().attribute(商品控制.表名, hasItem(
+                        allOf(
+                            hasProperty("id", equalTo(商品ID)),
+                            hasProperty("名称", equalTo(商品名)),
+                            hasProperty("单位", samePropertyValuesAs(期望单位))
+                                    ))));
   }
 }
