@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,6 +20,7 @@ public class 商品 {
   @Size(max = 50, message = "商品长度不可超过50")
   private String 名称;
 
+  @NotNull(message = "请选择一个单位")
   private 单位 单位;
 
   @Id
