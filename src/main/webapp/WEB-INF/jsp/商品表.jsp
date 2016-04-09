@@ -38,8 +38,9 @@
 		<form:input type="text" path="名称" size="50" />
 		<form:errors path="名称" cssClass="error"/>
 		<br/>
-		<form:select path="单位" multiple="true" items="${all单位s}" itemLabel="名称" itemValue="id" />
-		<input type="submit" value="提交" disabled="disabled"></input>
+		<label for="单位">单位:</label>
+		<form:select path="单位" multiple="true" items="${所有单位}" itemLabel="名称" itemValue="id" />
+		<input type="submit" value="提交" />
 	</form:form>
 </body>
 
