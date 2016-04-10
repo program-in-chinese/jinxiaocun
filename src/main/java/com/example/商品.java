@@ -16,6 +16,7 @@ public class 商品 {
 
   private Long id;
 
+  // TODO(#5): 提取所有message到bundle文件
   @NotEmpty(message = "商品名称不可为空")
   @Size(max = 50, message = "商品长度不可超过50")
   private String 名称;

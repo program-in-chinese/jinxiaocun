@@ -1,6 +1,5 @@
 package com.example;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -40,7 +39,7 @@ public class 商品控制 {
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public String 添加(@Valid 商品 商品, BindingResult 约束结果, Model 模型) throws UnsupportedEncodingException {
+  public String 添加(@Valid 商品 商品, BindingResult 约束结果, Model 模型) {
     if (约束结果.hasErrors()) {
       列出单位(模型);
 

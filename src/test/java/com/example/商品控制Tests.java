@@ -70,6 +70,7 @@ public class 商品控制Tests {
         .andExpect(model().attribute(商品控制.表名, Matchers.is(Matchers.empty())));
   }
 
+  // TODO(#4): 改为对repository的单元测试
   @Test
   public void 添加() throws Exception {
     单位 期望单位 = new 单位();
