@@ -1,5 +1,7 @@
 package com.example;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,14 +41,14 @@ public class 商品控制 {
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public String 添加(@Valid 商品 商品, BindingResult 约束结果, Model 模型) {
+  public String 添加(@Valid 商品 商品, BindingResult 约束结果, Model 模型) throws UnsupportedEncodingException {
     if (约束结果.hasErrors()) {
       列出单位(模型);
 
       return URL;
     }
     商品库.save(商品);
-    return "redirect:/" + URL;
+    return "redirect:/" +  URLEncoder.encode(URL, "UTF-8");
   }
 
   private void 列出单位(Model 模型) {

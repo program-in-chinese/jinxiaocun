@@ -1,5 +1,7 @@
 package com.example;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -29,15 +31,15 @@ public class 单位控制 {
     }
     // 需要初始化被校验的对象
     模型.addAttribute("单位", new 单位());
-    return 表名;
+    return URL;
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public String 添加(@Valid 单位 单位, BindingResult 约束结果) {
+  public String 添加(@Valid 单位 单位, BindingResult 约束结果) throws UnsupportedEncodingException {
     if (约束结果.hasErrors()) {
       return URL;
     }
     单位库.save(单位);
-    return "redirect:/" + URL;
+    return "redirect:/" + URLEncoder.encode(URL, "UTF-8");
   }
 }
