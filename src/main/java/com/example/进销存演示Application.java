@@ -18,7 +18,7 @@ public class 进销存演示Application extends WebMvcConfigurerAdapter {
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
     try {
-      registry.addRedirectViewController("/", "/" + URLEncoder.encode(商品控制.URL, "UTF-8"));
+      registry.addRedirectViewController("/", "/" + URLEncoder.encode(首页控制.URL, "UTF-8"));
     } catch (UnsupportedEncodingException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

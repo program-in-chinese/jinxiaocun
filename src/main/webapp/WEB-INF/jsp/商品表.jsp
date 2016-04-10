@@ -10,7 +10,10 @@
 </head>
 
 <body>
-	<a href="https://git.oschina.net/zhishi/jinxiaocun">源码与项目管理主页</a>
+	<div>
+		<a href="/">首页</a>
+		<a href="https://git.oschina.net/zhishi/jinxiaocun">源码与项目管理主页</a>
+	</div>
 	<h2>商品列表</h2>
 	<c:forEach var="商品" items="${商品表}">
 		<div>

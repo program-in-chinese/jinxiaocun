@@ -57,7 +57,7 @@ public class 商品控制Tests {
   public void 根路径转移() throws Exception {
     模拟Mvc.perform(get("/"))
         .andExpect(status().is3xxRedirection())
-        .andExpect(header().string("Location", "/" + URLEncoder.encode(商品控制.URL, "UTF-8")));
+        .andExpect(header().string("Location", "/" + URLEncoder.encode(首页控制.URL, "UTF-8")));
   }
 
   @Test
