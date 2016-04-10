@@ -12,8 +12,8 @@
 		<a href="https://git.oschina.net/zhishi/jinxiaocun">源码与项目管理主页</a>
 	</div>
 	<div>
-		<a href="/单位表">单位</a>
-		<a href="/商品表">商品</a>
+		<a href="单位表">单位</a>
+		<a href="商品表">商品</a>
 	</div>
 </body>
 </html>
