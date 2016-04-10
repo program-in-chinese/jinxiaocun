@@ -1,7 +1,6 @@
 package com.example;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -48,7 +47,7 @@ public class 商品控制 {
       return URL;
     }
     商品库.save(商品);
-    return "redirect:/" +  URLEncoder.encode(URL, "UTF-8");
+    return 列表(模型);
   }
 
   private void 列出单位(Model 模型) {

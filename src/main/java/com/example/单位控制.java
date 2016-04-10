@@ -1,7 +1,6 @@
 package com.example;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,11 +34,11 @@ public class 单位控制 {
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public String 添加(@Valid 单位 单位, BindingResult 约束结果) throws UnsupportedEncodingException {
+  public String 添加(@Valid 单位 单位, BindingResult 约束结果, Model 模型) throws UnsupportedEncodingException {
     if (约束结果.hasErrors()) {
       return URL;
     }
     单位库.save(单位);
-    return "redirect:/" + URLEncoder.encode(URL, "UTF-8");
+    return 列表(模型);//"redirect:/" + URLEncoder.encode(URL, "UTF-8");
   }
 }

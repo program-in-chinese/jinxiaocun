@@ -82,24 +82,24 @@ public class 商品控制Tests {
     期望商品.set单位(期望单位);
 
     模拟Mvc.perform(post(new URI("/" + 单位控制.URL)).param("名称", 单位名))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(header().string("Location", "/" + 单位控制.URL));
+        .andExpect(status().isOk())
+        .andExpect(view().name(单位控制.URL));
 
     模拟Mvc.perform(get(new URI("/" + 单位控制.URL)))
            .andExpect(status().isOk())
-           .andExpect(view().name(单位控制.表名))
+           .andExpect(view().name(单位控制.URL))
            .andExpect(model().attributeExists(单位控制.表名))
            .andExpect(model().attribute(单位控制.表名, hasSize(1)))
            .andExpect(model().attribute(单位控制.表名,
                         contains(samePropertyValuesAs(期望单位))));
 
     模拟Mvc.perform(post(new URI("/" + 商品控制.URL)).param("名称", 商品名).param("单位", Long.toString(单位ID)))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(header().string("Location", "/" + 商品控制.URL));
+        .andExpect(status().isOk())
+        .andExpect(view().name(商品控制.URL));
 
     模拟Mvc.perform(get(new URI("/" + 商品控制.URL)))
            .andExpect(status().isOk())
-           .andExpect(view().name(商品控制.表名))
+           .andExpect(view().name(商品控制.URL))
            .andExpect(model().attributeExists(商品控制.表名))
            .andExpect(model().attribute(商品控制.表名, hasSize(1)))
            .andExpect(model().attribute(商品控制.表名, hasItem(
