@@ -14,7 +14,7 @@
 	<h2>进出单列表</h2>
 	<c:forEach var="进出单" items="${进出单表}">
 		<div>
-			<c:out value="${进出单.进}"/>
+			<c:out value="${进出单.进 ? '进' : '出'}"/>
 			<c:out value="${进出单.数量}"/>
 			<c:out value="${进出单.商品.单位.名称}"/>
 			<c:out value="${进出单.商品.名称}"/>
@@ -24,8 +24,8 @@
 	<h3>添加进出单</h3>
 	<form:form method="POST" modelAttribute="进出单">
 		<form:errors path="*" cssClass="errorblock" element="div" />
-		<form:radiobutton path="进" value="true" />
-		<form:radiobutton path="进" value="false" />
+		<form:radiobutton path="进" value="true" />进
+		<form:radiobutton path="进" value="false" />出
 		<br/>
 		<label for="数量">数量:</label>
 		<form:input type="text" path="数量" size="50" />

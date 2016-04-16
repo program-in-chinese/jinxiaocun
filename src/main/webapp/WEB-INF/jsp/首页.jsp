@@ -11,6 +11,7 @@
 	<div>
 		<a href="单位表">单位</a>
 		<a href="商品表">商品</a>
+		<a href="进出单表">进出单</a>
 	</div>
 </body>
 </html>
