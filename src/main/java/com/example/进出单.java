@@ -1,5 +1,8 @@
 package com.example;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +14,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class 进出单 {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   // 进货真, 出货假
@@ -18,13 +23,15 @@ public class 进出单 {
 
   private double 数量;
 
+  @ManyToOne
+  @JoinColumn(name = "商品id")
   @NotNull(message = "请选择一个商品")
   private 商品 商品;
 
-  // TODO: 添加时间戳, 默认为记录添加的时间
+  // 默认为记录添加的时间
+  @Column(name="创建时间", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+  private Date 创建时间;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   public Long getId() {
     return id;
   }
@@ -49,13 +56,19 @@ public class 进出单 {
     this.数量 = 数量;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "商品id")
   public 商品 get商品() {
     return 商品;
   }
 
   public void set商品(商品 商品) {
     this.商品 = 商品;
+  }
+
+  public Date get创建时间() {
+    return 创建时间;
+  }
+
+  public void set创建时间(Date 创建时间) {
+    this.创建时间 = 创建时间;
   }
 }

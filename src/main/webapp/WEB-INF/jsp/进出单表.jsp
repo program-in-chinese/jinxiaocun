@@ -18,6 +18,7 @@
 			<c:out value="${进出单.数量}"/>
 			<c:out value="${进出单.商品.单位.名称}"/>
 			<c:out value="${进出单.商品.名称}"/>
+			<c:out value="${进出单.创建时间}"/>
 		</div>
 	</c:forEach>
 
