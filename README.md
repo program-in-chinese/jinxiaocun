@@ -3,3 +3,8 @@
 
 [贴吧讨论帖](http://tieba.baidu.com/p/4433232983)
 
+[演示](http://74.91.17.250:8080/jinxiaocun/)
+
+$ mvn spring-boot:run
+
+访问localhost:8080
